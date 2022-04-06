@@ -7,14 +7,15 @@ public class Tris
     private boolean flag=true;
     private boolean v=true; //vittoria
     private int c=0;//contatore caselle
-    private int seq_mosse = 0;
+    private String seq_mosse = "";
+    private String esito = "";
     public Tris(){
         
     }
     public int input(int b){
         Scanner sc=new Scanner(System.in);
         valore_g=b;
-        System.out.print("Player "+valore_g+" inserire la casella: ");
+        System.out.print("Player " + valore_g + " inserire la casella: ");
         while(flag){
             in=sc.nextInt();
             if(in<=0 || in>9){
@@ -32,6 +33,10 @@ public class Tris
         }
         flag=true;
         a[in-1]+=valore_g;
+        
+        seq_mosse = seq_mosse + Integer.toString(in);
+        System.out.println(seq_mosse);
+
         return in;
     }
     public boolean controllo(){
@@ -44,6 +49,8 @@ public class Tris
                 if(a[0]==2 && a[1]==2 && a[2]==2 || a[3]==2 && a[4]==2 && a[5]==2 || a[6]==2 && a[7]==2 && a[8]==2 || a[0]==2 && a[3]==2 && a[6]==2 || a[1]==2 && a[4]==2 && a[7]==2 || a[2]==2 && a[5]==2 && a[8]==2 || a[0]==2 && a[4]==2 && a[8]==2 || a[6]==2 && a[4]==2 && a[2]==2){
                     v=false;
                     System.out.println("Vittoria player 2");
+                    
+
                 }
             }
         }
