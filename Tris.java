@@ -7,7 +7,8 @@ public class Tris
     private boolean flag=true;
     private boolean v=true; //vittoria
     private int c=0;//contatore caselle
-    private int seq_mosse = 0;
+    private static String seq_mosse = "";
+    private static String esito = "";
     public Tris(){
         
     }
@@ -30,6 +31,8 @@ public class Tris
                 }
             }
         }
+        seq_mosse = seq_mosse + Integer.toString(in);
+        System.out.println(seq_mosse);
         flag=true;
         a[in-1]+=valore_g;
         return in;
@@ -39,17 +42,20 @@ public class Tris
                 if(a[0]==1 && a[1]==1 && a[2]==1 || a[3]==1 && a[4]==1 && a[5]==1 || a[6]==1 && a[7]==1 && a[8]==1 || a[0]==1 && a[3]==1 && a[6]==1 || a[1]==1 && a[4]==1 && a[7]==1 || a[2]==1 && a[5]==1 && a[8]==1 || a[0]==1 && a[4]==1 && a[8]==1 || a[6]==1 && a[4]==1 && a[2]==1){
                 v=false;
                 System.out.println("Vittoria player 1");
+                esito = "L";
             }
             else{
                 if(a[0]==2 && a[1]==2 && a[2]==2 || a[3]==2 && a[4]==2 && a[5]==2 || a[6]==2 && a[7]==2 && a[8]==2 || a[0]==2 && a[3]==2 && a[6]==2 || a[1]==2 && a[4]==2 && a[7]==2 || a[2]==2 && a[5]==2 && a[8]==2 || a[0]==2 && a[4]==2 && a[8]==2 || a[6]==2 && a[4]==2 && a[2]==2){
                     v=false;
                     System.out.println("Vittoria player 2");
+                    esito = "W";
                 }
             }
         }
         else{
             v=false;
             System.out.print("Pareggio");
+            esito = "D";
         }
         return v;
     }
@@ -67,4 +73,10 @@ public class Tris
         }
         System.out.println("\n");
     }
+    public static String GetMosse() {
+        return seq_mosse;
+    }
+    public static String GetEsito() {
+        return esito;
+    }    
 }
