@@ -7,13 +7,21 @@ public class Tris
     private boolean flag=true;
     private boolean v=true; //vittoria
     private int c=0;//contatore caselle
+<<<<<<< HEAD
     private int seq_mosse = 0;
+=======
+
+    private static String seq_mosse = "";
+    private static String esito = "";
+
+>>>>>>> 08efa9b1d932ed344372a84f7572253792ea270b
     public Tris(){
         
     }
     public int input(int b){
         Scanner sc=new Scanner(System.in);
         valore_g=b;
+<<<<<<< HEAD
         System.out.print("Player "+valore_g+" inserire la casella: ");
         if (b == 1) {
 
@@ -28,6 +36,21 @@ public class Tris
                     } else {
                         System.out.print("Casella occupata rinserire: ");
                     }
+=======
+        System.out.print("Player " + valore_g + " inserire la casella: ");
+        while(flag){
+            in=sc.nextInt();
+            if(in<=0 || in>9){
+                System.out.print("Inserire una casella tra 1 e 9: ");
+            }
+            else{
+                if(a[in-1]==0){
+                    flag=false;
+                    c++;
+                }
+                else{
+                    System.out.print("Casella occupata rinserire: ");
+>>>>>>> 08efa9b1d932ed344372a84f7572253792ea270b
                 }
             }
         
@@ -41,6 +64,10 @@ public class Tris
 >>>>>>> parent of 5075677 (Database connection to tris script)
         flag=true;
         a[in-1]+=valore_g;
+        
+        seq_mosse = seq_mosse + Integer.toString(in);
+        System.out.println(seq_mosse);
+
         return in;
     }
     public boolean controllo(){
