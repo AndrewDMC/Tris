@@ -8,8 +8,8 @@ public class Tris
     private boolean v=true; //vittoria
     private int c=0;//contatore caselle
 
-    private String seq_mosse = "";
-    private String esito = "";
+    private static String seq_mosse = "";
+    private static String esito = "";
 
     public Tris(){
         
