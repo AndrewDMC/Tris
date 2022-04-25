@@ -1,12 +1,17 @@
+<<<<<<< HEAD
 
 import java.sql.*;
 
 
+=======
+import java.util.*;
+>>>>>>> parent of 5075677 (Database connection to tris script)
 public class Main
 {
     public static void main(String[] args) {
 
         Tris tris=new Tris();
+<<<<<<< HEAD
         int player1=0;
         int player2=0;
 
@@ -121,4 +126,20 @@ public class Main
 
 }
 
+=======
+        int in1=0;
+        int in2=0;
+        boolean b=true;
+        tris.output();
+        do{
+            in1=tris.input(1);
+            b=tris.controllo();
+            tris.output();
+            if(!b) break;
+            in2=tris.input(2);
+            tris.output();
+            b=tris.controllo();
+        }while(b);
+    }
+>>>>>>> parent of 5075677 (Database connection to tris script)
 }
