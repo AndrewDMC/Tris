@@ -1,15 +1,14 @@
-import java.util.*;
+
 import java.sql.*;
 
 
 public class Main
 {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        int[] a = new int[9];
+
         Tris tris=new Tris();
-        int in1=0;
-        int in2=0;
+        int player1=0;
+        int player2=0;
 
         String url = "jdbc:mysql://localhost:3306/Tris";
     
@@ -20,7 +19,11 @@ public class Main
         Connection conn = null;
         Statement stat;
         ResultSet result;
-
+        
+        String esito = "";
+        String mosse = "";
+        
+        
         
     
         
@@ -55,26 +58,42 @@ public class Main
         }
 
         
-        boolean b=true;
+        boolean MainChecker=true;
         tris.output();
         do{
-            in1=tris.input(1);
-            b=tris.controllo();
-            tris.output();
-            if(!b) break;
-            in2=tris.input(2);
-            tris.output();
-            b=tris.controllo();
-        }while(b);
 
-        if(!b){
+            player1 = tris.input(1);
+            MainChecker = tris.controllo();
+            tris.output();
+            if(!MainChecker) break;
+            try{
+                result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '15%' AND esito ='W' ");
+            }
+
+            catch (SQLException e) {
+                                       
+                throw new IllegalStateException("Cannot execute query", e);
+           
+           }  
+
+            tris.output();
+            MainChecker = tris.controllo();
+
+        }while(MainChecker);
+        
+        esito = tris.GetEsito();
+        mosse = tris.GetMosse();
+        System.out.println(esito);
+
+        if(!MainChecker){
+	
 
         
 		
             try{
-                String myQuery = " INSERT INTO esperienza (mosse, esito) VALUES ('"+ Tris.GetEsito() + "',' " + Tris.GetMosse() + "')";
+                String myQuery = " INSERT INTO esperienza (mosse, esito) VALUES ('"+ mosse + "',' " + esito + "')";
                 stat.executeUpdate(myQuery);
-                System.out.print("Dati registrati");
+                System.out.print("Dati registrati\n");
          }
          catch (SQLException e) {
      
@@ -87,8 +106,8 @@ public class Main
      
              while (result.next()) {
      
-                 System.out.println("ID:" + result.getString(0) + " MOSSE:" + result.getString(1) + " ESITO:"
-                         + result.getString(2));
+                 System.out.println("ID:" + result.getString(1) + " MOSSE:" + result.getString(2) + " ESITO:"
+                         + result.getString(3));
      
              }
      
@@ -101,4 +120,5 @@ public class Main
         
 
 }
+
 }

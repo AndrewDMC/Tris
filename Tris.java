@@ -16,21 +16,25 @@ public class Tris
         Scanner sc=new Scanner(System.in);
         valore_g=b;
         System.out.print("Player "+valore_g+" inserire la casella: ");
-        while(flag){
-            in=sc.nextInt();
-            if(in<=0 || in>9){
-                System.out.print("Inserire una casella tra 1 e 9: ");
-            }
-            else{
-                if(a[in-1]==0){
-                    flag=false;
-                    c++;
+        if (b == 1) {
+
+            while (flag) {
+                in = sc.nextInt();
+                if (in <= 0 || in > 9) {
+                    System.out.print("Inserire una casella tra 1 e 9: ");
+                } else {
+                    if (a[in - 1] == 0) {
+                        flag = false;
+                        c++;
+                    } else {
+                        System.out.print("Casella occupata rinserire: ");
+                    }
                 }
-                else{
-                    System.out.print("Casella occupata rinserire: ");
-                }
             }
+        
         }
+        
+        
         seq_mosse = seq_mosse + Integer.toString(in);
         System.out.println(seq_mosse);
         flag=true;
@@ -38,7 +42,7 @@ public class Tris
         return in;
     }
     public boolean controllo(){
-        if(c!=10){
+        if(c<9){
                 if(a[0]==1 && a[1]==1 && a[2]==1 || a[3]==1 && a[4]==1 && a[5]==1 || a[6]==1 && a[7]==1 && a[8]==1 || a[0]==1 && a[3]==1 && a[6]==1 || a[1]==1 && a[4]==1 && a[7]==1 || a[2]==1 && a[5]==1 && a[8]==1 || a[0]==1 && a[4]==1 && a[8]==1 || a[6]==1 && a[4]==1 && a[2]==1){
                 v=false;
                 System.out.println("Vittoria player 1");
@@ -73,10 +77,10 @@ public class Tris
         }
         System.out.println("\n");
     }
-    public static String GetMosse() {
+    public String GetMosse() {
         return seq_mosse;
     }
-    public static String GetEsito() {
+    public String GetEsito() {
         return esito;
     }    
 }
