@@ -62,10 +62,6 @@ public class Main
         tris.output();
         do{
 
-<<<<<<< HEAD
-        if(!b){
-            System.out.println(Tris.GetEsito());
-=======
             player1 = tris.input(1);
             MainChecker = tris.controllo();
             tris.output();
@@ -92,7 +88,6 @@ public class Main
         if(!MainChecker){
 	
 
->>>>>>> 2571a97e0e0f3ec19d3903f4ed68165dd73ff47c
         
 		
             try{
