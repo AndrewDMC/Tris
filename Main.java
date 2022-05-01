@@ -68,7 +68,7 @@ public class Main
         }while(b);
 
         if(!b){
-
+            System.out.println(Tris.GetEsito());
         
 		
             try{
