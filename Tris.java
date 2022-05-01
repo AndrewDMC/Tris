@@ -7,16 +7,36 @@ public class Tris
     private boolean flag=true;
     private boolean v=true; //vittoria
     private int c=0;//contatore caselle
+<<<<<<< HEAD
+    private int seq_mosse = 0;
+=======
 
     private static String seq_mosse = "";
     private static String esito = "";
 
+>>>>>>> 08efa9b1d932ed344372a84f7572253792ea270b
     public Tris(){
         
     }
     public int input(int b){
         Scanner sc=new Scanner(System.in);
         valore_g=b;
+<<<<<<< HEAD
+        System.out.print("Player "+valore_g+" inserire la casella: ");
+        if (b == 1) {
+
+            while (flag) {
+                in = sc.nextInt();
+                if (in <= 0 || in > 9) {
+                    System.out.print("Inserire una casella tra 1 e 9: ");
+                } else {
+                    if (a[in - 1] == 0) {
+                        flag = false;
+                        c++;
+                    } else {
+                        System.out.print("Casella occupata rinserire: ");
+                    }
+=======
         System.out.print("Player " + valore_g + " inserire la casella: ");
         while(flag){
             in=sc.nextInt();
@@ -30,11 +50,18 @@ public class Tris
                 }
                 else{
                     System.out.print("Casella occupata rinserire: ");
+>>>>>>> 08efa9b1d932ed344372a84f7572253792ea270b
                 }
             }
+        
         }
+<<<<<<< HEAD
+        
+        
         seq_mosse = seq_mosse + Integer.toString(in);
         System.out.println(seq_mosse);
+=======
+>>>>>>> parent of 5075677 (Database connection to tris script)
         flag=true;
         a[in-1]+=valore_g;
         
@@ -44,24 +71,21 @@ public class Tris
         return in;
     }
     public boolean controllo(){
-        if(c!=10){
+        if(c<9){
                 if(a[0]==1 && a[1]==1 && a[2]==1 || a[3]==1 && a[4]==1 && a[5]==1 || a[6]==1 && a[7]==1 && a[8]==1 || a[0]==1 && a[3]==1 && a[6]==1 || a[1]==1 && a[4]==1 && a[7]==1 || a[2]==1 && a[5]==1 && a[8]==1 || a[0]==1 && a[4]==1 && a[8]==1 || a[6]==1 && a[4]==1 && a[2]==1){
                 v=false;
                 System.out.println("Vittoria player 1");
-                esito = "L";
             }
             else{
                 if(a[0]==2 && a[1]==2 && a[2]==2 || a[3]==2 && a[4]==2 && a[5]==2 || a[6]==2 && a[7]==2 && a[8]==2 || a[0]==2 && a[3]==2 && a[6]==2 || a[1]==2 && a[4]==2 && a[7]==2 || a[2]==2 && a[5]==2 && a[8]==2 || a[0]==2 && a[4]==2 && a[8]==2 || a[6]==2 && a[4]==2 && a[2]==2){
                     v=false;
                     System.out.println("Vittoria player 2");
-                    esito = "W";
                 }
             }
         }
         else{
             v=false;
             System.out.print("Pareggio");
-            esito = "D";
         }
         return v;
     }
@@ -79,10 +103,13 @@ public class Tris
         }
         System.out.println("\n");
     }
-    public static String GetMosse() {
+<<<<<<< HEAD
+    public String GetMosse() {
         return seq_mosse;
     }
-    public static String GetEsito() {
+    public String GetEsito() {
         return esito;
     }    
+=======
+>>>>>>> parent of 5075677 (Database connection to tris script)
 }
