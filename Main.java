@@ -34,6 +34,7 @@ public class Main
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (Exception ex) {
             System.out.println("Error in loading driver");
+            //ciao
         }
     
         try {
