@@ -60,7 +60,7 @@ public class Database {
     public void InsertToDB(String mosseDB, String esitoDB) {
 
         try {
-            String myQuery = " INSERT INTO esperienza (mosse, esito) VALUES ('" + mosseDB + "',' " + esitoDB + "')";
+            String myQuery = " INSERT INTO esperienza (mosse, esito) VALUES ('" + mosseDB + "','" + esitoDB + "')";
             stat.executeUpdate(myQuery);
             System.out.print("Dati registrati\n");
         } catch (SQLException e) {
@@ -92,7 +92,8 @@ public class Database {
     public int InputAI(String SeqMosse){
         try {
             System.out.println(SeqMosse);
-            result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%'");
+            result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%' AND Esito = 'W' OR Esito = 'D' ORDER BY Esito = 'W' DESC");
+            System.out.println(result);
             if (result.first()) {
                 dbMoves = result.getString(2);
             }
@@ -104,7 +105,7 @@ public class Database {
                 }
 
             }*/
-            System.out.println("SUS"+dbMoves);
+            System.out.println("SUS" + dbMoves);
         }
 
         catch (SQLException e){
