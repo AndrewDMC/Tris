@@ -1,5 +1,6 @@
 
 import java.sql.*;
+import java.util.*;
 
 public class Database {
 
@@ -15,8 +16,13 @@ public class Database {
 
     String esito = "";
     String mosse = "";
+    String dbMoves = "";	
 
-    Tris tris = new Tris();
+    Random rand = new Random();
+    Scanner scanner = new Scanner(System.in);
+    
+
+    int value = 0;
 
     public Database() {
 
@@ -50,18 +56,11 @@ public class Database {
 
     }
 
-    public void VariableInitialization() {
 
-        esito = tris.GetEsito();
-        mosse = tris.GetMosse();
-        System.out.println(esito);
-
-    }
-
-    public void InsertToDB() {
+    public void InsertToDB(String mosseDB, String esitoDB) {
 
         try {
-            String myQuery = " INSERT INTO esperienza (mosse, esito) VALUES ('" + mosse + "',' " + esito + "')";
+            String myQuery = " INSERT INTO esperienza (mosse, esito) VALUES ('" + mosseDB + "',' " + esitoDB + "')";
             stat.executeUpdate(myQuery);
             System.out.print("Dati registrati\n");
         } catch (SQLException e) {
@@ -88,6 +87,50 @@ public class Database {
 
             throw new IllegalStateException("Cannot execute query", e);
         }
+
+    }
+    public int InputAI(String SeqMosse){
+        try {
+            System.out.println(SeqMosse);
+            result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%'");
+            if (result.first()) {
+                dbMoves = result.getString(2);
+            }
+            /*if(dbMoves == ""){
+
+                result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%' AND esito = 'D'");
+                if (result.first()) {
+                    dbMoves = result.getString(2);
+                }
+
+            }*/
+            System.out.println("SUS"+dbMoves);
+        }
+
+        catch (SQLException e){
+
+            throw new IllegalStateException("Cannot execute query", e);
+
+        }
+        if (dbMoves != "") {
+            try {
+
+                value = Character.getNumericValue(dbMoves.charAt(SeqMosse.length()));
+
+            } catch (Exception e) {
+
+                System.out.println("Non riesco a trovare una mossa adatta. Motivo: " + e + "\n");
+
+            }
+        } else {
+            System.out.println("\nNon so come procedere. Potresti aiutarmi?\n");
+            value = scanner.nextInt();
+        }
+
+        return value;
+
+
+        
 
     }
 

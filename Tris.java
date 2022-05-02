@@ -3,13 +3,16 @@ import java.util.*;
 public class Tris {
     private int valore_g;
     private int[] a = new int[9];
-    private int in;
     private boolean flag = true;
     private boolean v = true; // vittoria
     private int c = 0;// contatore caselle
+    private int value = 0; 
+    
 
     private static String seq_mosse = "";
     private static String esito = "";
+
+    Database database = new Database();
 
     public Tris() {
 
@@ -18,41 +21,61 @@ public class Tris {
     public int input(int b) {
         Scanner sc = new Scanner(System.in);
         valore_g = b;
+        flag = true;
         if (valore_g == 1) {
             System.out.print("Player " + valore_g + " inserire la casella: ");
             while (flag) {
-                in = sc.nextInt();
-                if (in <= 0 || in > 9) {
+                value = sc.nextInt();
+                if (value <= 0 || value > 9) {
                     System.out.print("Inserire una casella tra 1 e 9: ");
                 } else {
-                    if (a[in - 1] == 0) {
+                    if (a[value - 1] == 0) {
                         flag = false;
                         c++;
+                        
                     } else {
                         System.out.print("Casella occupata rinserire: ");
                     }
+        
                 }
+               
+            }
+                seq_mosse = seq_mosse + Integer.toString(value);
+                System.out.println(seq_mosse);
+                
+                a[value - 1] += valore_g;
+                
+            }
+        
+        if (valore_g == 2) {
 
+            while (flag) {
+                value = database.InputAI(seq_mosse);
+                if (value <= 0 || value > 9) {
+                    System.out.print("Inserire una casella tra 1 e 9: ");
+                } else {
+                    if (a[value - 1] == 0) {
+                        flag = false;
+                        c++;
+                        
+                    } else {
+                        System.out.print("Casella occupata rinserire: ");
+                    }
+        
+                }
+            
+            
+                seq_mosse = seq_mosse + Integer.toString(value);
+                System.out.println(seq_mosse);
+                
+                a[value - 1] += valore_g;
             }
 
         }
-        else{
 
-            
-
-
-        }
-
-        seq_mosse = seq_mosse + Integer.toString(in);
-        System.out.println(seq_mosse);
-        flag = true;
-        a[in - 1] += valore_g;
-
-        seq_mosse = seq_mosse + Integer.toString(in);
-        System.out.println(seq_mosse);
-
-        return in;
+        return value;
     }
+    
 
     public boolean controllo() {
         if (c < 9) {
@@ -62,6 +85,7 @@ public class Tris {
                     || a[0] == 1 && a[4] == 1 && a[8] == 1 || a[6] == 1 && a[4] == 1 && a[2] == 1) {
                 v = false;
                 System.out.println("Vittoria player 1");
+                esito = "L";
             } else {
                 if (a[0] == 2 && a[1] == 2 && a[2] == 2 || a[3] == 2 && a[4] == 2 && a[5] == 2
                         || a[6] == 2 && a[7] == 2 && a[8] == 2 || a[0] == 2 && a[3] == 2 && a[6] == 2
@@ -69,11 +93,13 @@ public class Tris {
                         || a[0] == 2 && a[4] == 2 && a[8] == 2 || a[6] == 2 && a[4] == 2 && a[2] == 2) {
                     v = false;
                     System.out.println("Vittoria player 2");
+                    esito = "W";
                 }
             }
         } else {
             v = false;
             System.out.print("Pareggio");
+            esito = "D";
         }
         return v;
     }
@@ -106,4 +132,5 @@ public class Tris {
     public String GetEsito() {
         return esito;
     }
+
 }
