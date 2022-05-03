@@ -6,8 +6,7 @@ public class Tris {
     private boolean flag = true;
     private boolean v = true; // vittoria
     private int c = 0;// contatore caselle
-    private int value = 0; 
-    
+    private int value = 0;
 
     private static String seq_mosse = "";
     private static String esito = "";
@@ -25,6 +24,7 @@ public class Tris {
         if (valore_g == 1) {
             System.out.print("Player " + valore_g + " inserire la casella: ");
             while (flag) {
+
                 value = sc.nextInt();
                 if (value <= 0 || value > 9) {
                     System.out.print("Inserire una casella tra 1 e 9: ");
@@ -32,21 +32,21 @@ public class Tris {
                     if (a[value - 1] == 0) {
                         flag = false;
                         c++;
-                        
+
                     } else {
                         System.out.print("Casella occupata rinserire: ");
                     }
-        
+
                 }
-               
+
             }
-                seq_mosse = seq_mosse + Integer.toString(value);
-                System.out.println(seq_mosse);
-                
-                a[value - 1] += valore_g;
-                
-            }
-        
+            seq_mosse = seq_mosse + Integer.toString(value);
+            System.out.println(seq_mosse);
+
+            a[value - 1] += valore_g;
+
+        }
+
         if (valore_g == 2) {
 
             while (flag) {
@@ -57,25 +57,47 @@ public class Tris {
                     if (a[value - 1] == 0) {
                         flag = false;
                         c++;
-                        
+
                     } else {
                         System.out.print("Casella occupata rinserire: ");
                     }
-        
+
                 }
-            
-            
+
                 seq_mosse = seq_mosse + Integer.toString(value);
                 System.out.println(seq_mosse);
-                
+
                 a[value - 1] += valore_g;
             }
 
+            /*
+             * System.out.print("Player " + valore_g + " inserire la casella: ");
+             * while (flag) {
+             * value = sc.nextInt();
+             * if (value <= 0 || value > 9) {
+             * System.out.print("Inserire una casella tra 1 e 9: ");
+             * } else {
+             * if (a[value - 1] == 0) {
+             * flag = false;
+             * c++;
+             * 
+             * } else {
+             * System.out.print("Casella occupata rinserire: ");
+             * }
+             * 
+             * }
+             * 
+             * }
+             * seq_mosse = seq_mosse + Integer.toString(value);
+             * System.out.println(seq_mosse);
+             * 
+             * a[value - 1] += valore_g;
+             * 
+             * }
+             */
         }
-
         return value;
     }
-    
 
     public boolean controllo() {
         if (c < 9) {
