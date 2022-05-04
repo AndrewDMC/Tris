@@ -4,8 +4,6 @@ public class Main
     public static void main(String[] args) {
 
         Tris tris=new Tris();
-        int player1=0;
-        int player2=0;
         String mosse = "";
         String esito = "";
         Database database = new Database();
@@ -16,14 +14,14 @@ public class Main
         boolean MainChecker=true;
         tris.output();
         do{
-            player1 = tris.input(1);
+            tris.input(1);
             MainChecker = tris.controllo();
 
             if(!MainChecker) break;
             
             mosse = tris.GetMosse();
             tris.output();
-            player2 = tris.input(2);
+            tris.input(2);
             MainChecker = tris.controllo();
             
             if(!MainChecker) break;

@@ -8,7 +8,7 @@ public class Tris {
     private int c = 0;// contatore caselle
     private int value = 0;
 
-    private static String seq_mosse = "";
+    private static String SeqMosse = "";
     private static String esito = "";
 
     Database database = new Database();
@@ -17,7 +17,7 @@ public class Tris {
 
     }
 
-    public int input(int b) {
+    public void input(int b) {
         Scanner sc = new Scanner(System.in);
         valore_g = b;
         flag = true;
@@ -29,7 +29,9 @@ public class Tris {
                 if (value <= 0 || value > 9) {
                     System.out.print("Inserire una casella tra 1 e 9: ");
                 } else {
+                    System.out.println("Sus:"+a[value-1]);
                     if (a[value - 1] == 0) {
+
                         flag = false;
                         c++;
 
@@ -40,20 +42,17 @@ public class Tris {
                 }
 
             }
-            seq_mosse = seq_mosse + Integer.toString(value);
-            System.out.println(seq_mosse);
-
-            a[value - 1] += valore_g;
-
-        }
+                }
 
         if (valore_g == 2) {
 
             while (flag) {
-                value = database.InputAI(seq_mosse);
+                value = database.InputAI(SeqMosse);
                 if (value <= 0 || value > 9) {
                     System.out.print("Inserire una casella tra 1 e 9: ");
+                    
                 } else {
+                    
                     if (a[value - 1] == 0) {
                         flag = false;
                         c++;
@@ -64,8 +63,8 @@ public class Tris {
 
                 }
 
-                seq_mosse = seq_mosse + Integer.toString(value);
-                System.out.println(seq_mosse);
+                SeqMosse = SeqMosse + Integer.toString(value);
+                System.out.println(SeqMosse);
 
                 a[value - 1] += valore_g;
             }
@@ -96,7 +95,7 @@ public class Tris {
              * }
              */
         }
-        return value;
+        
     }
 
     public boolean controllo() {
@@ -148,7 +147,7 @@ public class Tris {
     }
 
     public String GetMosse() {
-        return seq_mosse;
+        return SeqMosse;
     }
 
     public String GetEsito() {
