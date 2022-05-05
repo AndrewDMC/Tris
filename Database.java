@@ -16,11 +16,10 @@ public class Database {
 
     String esito = "";
     String mosse = "";
-    String dbMoves = "";	
+    String dbMoves = "";
 
     Random rand = new Random();
     Scanner scanner = new Scanner(System.in);
-    
 
     int value = 0;
 
@@ -56,7 +55,6 @@ public class Database {
 
     }
 
-
     public void InsertToDB(String mosseDB, String esitoDB) {
 
         try {
@@ -89,26 +87,31 @@ public class Database {
         }
 
     }
-    public int InputAI(String SeqMosse){
+
+    public int InputAI(String SeqMosse) {
         try {
             System.out.println(SeqMosse);
-            result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%' AND Esito = 'W' OR Esito = 'D' ORDER BY Esito = 'W' DESC");
+            result = stat.executeQuery("SELECT * FROM esperienza WHERE mosse LIKE '" + SeqMosse
+                    + "%' AND Esito = 'W' OR Esito = 'D' ORDER BY Esito = 'W' DESC");
             System.out.println(result);
             if (result.first()) {
                 dbMoves = result.getString(2);
             }
-            /*if(dbMoves == ""){
-
-                result = stat.executeQuery( "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%' AND esito = 'D'");
-                if (result.first()) {
-                    dbMoves = result.getString(2);
-                }
-
-            }*/
+            /*
+             * if(dbMoves == ""){
+             * 
+             * result = stat.executeQuery(
+             * "SELECT * FROM esperienza WHERE mosse LIKE '"+SeqMosse+"%' AND esito = 'D'");
+             * if (result.first()) {
+             * dbMoves = result.getString(2);
+             * }
+             * 
+             * }
+             */
             System.out.println("SUS" + dbMoves);
         }
 
-        catch (SQLException e){
+        catch (SQLException e) {
 
             throw new IllegalStateException("Cannot execute query", e);
 
@@ -129,9 +132,6 @@ public class Database {
         }
 
         return value;
-
-
-        
 
     }
 

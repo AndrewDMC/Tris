@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Tris {
-    private int valore_g;
+    
     private int[] a = new int[9];
     private boolean flag = true;
     private boolean v = true; // vittoria
@@ -17,38 +17,52 @@ public class Tris {
 
     }
 
-    public void input(int b) {
+    public void input(int playerID) {
         Scanner sc = new Scanner(System.in);
-        valore_g = b;
+        
         flag = true;
-        if (valore_g == 1) {
-            System.out.print("Player " + valore_g + " inserire la casella: ");
-            while (flag) {
+        if (playerID == 1) {
+            System.out.print("Player " + playerID + " inserire la casella: ");
+            
+            try{
 
                 value = sc.nextInt();
-                if (value <= 0 || value > 9) {
-                    System.out.print("Inserire una casella tra 1 e 9: ");
-                } else {
-                    System.out.println("Sus:"+a[value-1]);
-                    if (a[value - 1] == 0) {
-
-                        flag = false;
-                        c++;
-
-                    } else {
-                        System.out.print("Casella occupata rinserire: ");
-                    }
-
-                }
-                SeqMosse = SeqMosse + Integer.toString(value);
-                System.out.println(SeqMosse);
-
-                a[value - 1] = valore_g;
+                flag = false;
 
             }
+
+            catch(Exception e){
+
+                System.out.print("Il valore corrente non è valido, reinserire:");
+                flag = true;
+                sc.nextLine();
+
+            }
+
+            if(value > 0 && value < 10 && a[value - 1] == 0 && flag != true){
+
+                a[value - 1] = playerID;
+                SeqMosse = SeqMosse + Integer.toString(value);
+                this.output();
+
+            }
+            
+            else{
+
+                if(flag == false){
+
+                    System.out.println("Questo spazio è occupato, ritentare");
+
                 }
 
-        if (valore_g == 2) {
+                this.input(playerID);
+
+            }
+                
+                
+                }
+
+        if (playerID == 2) {
 
             while (flag) {
                 value = database.InputAI(SeqMosse);
@@ -70,7 +84,7 @@ public class Tris {
                 SeqMosse = SeqMosse + Integer.toString(value);
                 System.out.println(SeqMosse);
 
-                a[value - 1] = valore_g;
+                a[value - 1] = playerID;
             }
 
             /*
