@@ -30,7 +30,25 @@ public class Tris {
                 flag = false;
 
             }
+            
+            catch(Exception e){
 
+                System.out.print("Il valore corrente non è valido, reinserire:");
+                flag = true;
+                sc.nextLine();
+
+            }
+        } 
+        
+        else{
+
+            try{
+
+                value = database.InputAI(SeqMosse);
+                flag = false;
+
+            }
+            
             catch(Exception e){
 
                 System.out.print("Il valore corrente non è valido, reinserire:");
@@ -39,11 +57,11 @@ public class Tris {
 
             }
 
+        }
+
             if(value > 0 && value < 10 && a[value - 1] == 0 && flag != true){
 
-                a[value - 1] = playerID;
-                SeqMosse = SeqMosse + Integer.toString(value);
-                this.output();
+                this.InsertoSeq(playerID);
 
             }
             
@@ -51,68 +69,30 @@ public class Tris {
 
                 if(flag == false){
 
+                    //if(playerID == 1)
                     System.out.println("Questo spazio è occupato, ritentare");
 
-                }
+                    if (playerID == 2) {
 
-                this.input(playerID);
+                    for (int i = 0; i < 9; i++) {
 
-            }
-                
-                
-                }
+                        if (a[i] == 0) {
 
-        if (playerID == 2) {
+                            value = i;
+                            this.InsertoSeq(playerID);
+                            break;
 
-            while (flag) {
-                value = database.InputAI(SeqMosse);
-                if (value <= 0 || value > 9) {
-                    System.out.print("Inserire una casella tra 1 e 9: ");
-                    
-                } else {
-                    
-                    if (a[value - 1] == 0) {
-                        flag = false;
-                        c++;
+                        }
 
-                    } else {
-                        System.out.print("Casella occupata rinserire: ");
                     }
 
                 }
 
-                SeqMosse = SeqMosse + Integer.toString(value);
-                System.out.println(SeqMosse);
+                }
+                if(playerID == 1)
+                this.input(playerID);
 
-                a[value - 1] = playerID;
             }
-
-            /*
-             * System.out.print("Player " + valore_g + " inserire la casella: ");
-             * while (flag) {
-             * value = sc.nextInt();
-             * if (value <= 0 || value > 9) {
-             * System.out.print("Inserire una casella tra 1 e 9: ");
-             * } else {
-             * if (a[value - 1] == 0) {
-             * flag = false;
-             * c++;
-             * 
-             * } else {
-             * System.out.print("Casella occupata rinserire: ");
-             * }
-             * 
-             * }
-             * 
-             * }
-             * seq_mosse = seq_mosse + Integer.toString(value);
-             * System.out.println(seq_mosse);
-             * 
-             * a[value - 1] += valore_g;
-             * 
-             * }
-             */
-        }
         
     }
 
@@ -170,6 +150,16 @@ public class Tris {
 
     public String GetEsito() {
         return esito;
+    }
+
+    public void InsertoSeq(int playerID) {
+
+        a[value - 1] = playerID;
+        SeqMosse = SeqMosse + Integer.toString(value);
+        System.out.println(SeqMosse);
+        this.output();
+        c++;
+
     }
 
 }
