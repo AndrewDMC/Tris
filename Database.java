@@ -25,6 +25,10 @@ public class Database {
 
     public Database() {
 
+    }
+
+    public void init(){
+
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
